@@ -73,6 +73,15 @@ public class UserController {
 		return "user/login";
 	}
 	
+	@PostMapping("/user/update")
+	public String userUpdate(User user) {
+		String rawPassword = user.getPassword();
+		String encPassword = passwordEncoder.encode(rawPassword);
+		user.setPassword(encPassword);
+		userRepository.save(user);
+		return "index";
+	}
+	
 	
 	@PostMapping("/app/user/login")
 	public ResponseDto login(@RequestBody User user) {
