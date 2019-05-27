@@ -32,6 +32,11 @@ public class CompanyResume {
 	private String fileName;
 	private String filePath;
 	
+	//폴더 관리를 위한 객체 선언
+	private String zipmimeType; 
+	private String zipfileName;
+	private String zipfilePath;
+	
 	@ManyToOne
 	@JoinColumn(name="companyId")
 	private User user;

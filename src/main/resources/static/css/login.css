@@ -1,0 +1,62 @@
+@charset "UTF-8";
+@import url("input.css");
+
+ 
+	body {
+		
+		height: 100vh;
+		background: linear-gradient( to top, #1976D2, white 10% );
+  		text-align: center; 
+	}
+    .choose{
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-gap: 10px;
+        text-align: center;
+        margin-top: 300px;
+    }
+    
+    #applicant_modal,
+    #company_modal {
+        display: none;
+    }
+    #company_modal.active,
+    #applicant_modal.active{
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        left: 0;
+        top: 0;
+        background: rgba(0,0,0, 0.6);
+        z-index: 999;
+    }
+    #company_login,
+    #applicant_login {
+        background: #FFF;
+        padding: 20px;
+        position: fixed;
+        width: 400px;
+        left: 10%;
+        right: 10%;
+        margin: 0 auto;
+        top: 30%;
+        height: 400px;
+    }
+    .login_text{
+        text-align: center;
+    }
+    .login_form{
+        margin-top: 5%;
+    }
+    .btn{
+        width: 100%;
+    }
+    .x_box{
+        text-align: right;
+    }
+    .x{
+        font-size: 30px;
+    }
+
+

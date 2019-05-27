@@ -22,12 +22,12 @@ public class Likes {
 	private int id;
 	
 	@ManyToOne
-	@JoinColumn(name="applicantId")
-	private User applicant;
+	@JoinColumn(name="fromUser")
+	private User fromUser;
 	
 	@ManyToOne
-	@JoinColumn(name="companyId")
-	private User company;
+	@JoinColumn(name="toUser")
+	private User toUser;
 	
 	@CreationTimestamp
 	private LocalDate createDate;

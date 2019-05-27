@@ -33,14 +33,14 @@ public class ApplicantSecurityConfig extends WebSecurityConfigurerAdapter{
 		http.csrf().disable();
 		http.cors().disable();
 		http.authorizeRequests()
-				.antMatchers("/")
+				.antMatchers("/hello/**")
 				.authenticated()
 				.anyRequest().permitAll()
 				.and()
 				.formLogin()
 				.loginPage("/user/login")
 				.loginProcessingUrl("/user/loginProc")
-				.defaultSuccessUrl("/");
+				.defaultSuccessUrl("/index");
 		
 	}
 	

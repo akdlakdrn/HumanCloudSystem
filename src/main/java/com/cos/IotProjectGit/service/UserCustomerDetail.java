@@ -14,7 +14,7 @@ public class UserCustomerDetail implements UserDetails{
 	
 	private static final long serialVersionUID = 1L;
 	
-	private User applicant;
+	private User user;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -23,12 +23,12 @@ public class UserCustomerDetail implements UserDetails{
 
 	@Override
 	public String getPassword() {
-		return applicant.getPassword();
+		return user.getPassword();
 	}
 
 	@Override
 	public String getUsername() {	
-		return applicant.getUsername();
+		return user.getUsername();
 	}
 
 	@Override

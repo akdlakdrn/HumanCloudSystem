@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.cos.IotProjectGit.model.ApplicantResume;
 
-public interface ResumeRepository extends JpaRepository<ApplicantResume, Integer>{
+public interface ApplicantResumeRepository extends JpaRepository<ApplicantResume, Integer>{
 
 }

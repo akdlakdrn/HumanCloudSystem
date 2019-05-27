@@ -30,7 +30,7 @@ public class User {
 	//@Column(name="number",columnDefinition = "String default 0")
 	private String number; //사업자번호 or 주민번호
 	//private Role role; //ROLE변경
-	private String role; //Admin, User, Company
+	private String role; //Admin, Applicant, Company
 	@CreationTimestamp
 	private LocalDate createDate;
 	@CreationTimestamp

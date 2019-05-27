@@ -15,6 +15,7 @@ import javax.persistence.Transient;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.cos.IotProjectGit.model.code.Education;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
@@ -42,6 +43,11 @@ public class ApplicantResume {
 	private String mimeType;
 	private String fileName;
 	private String filePath;
+	
+	//폴더 관리를 위한 객체 선언
+	private String zipmimeType; 
+	private String zipfileName;
+	private String zipfilePath;
 	//희망주소
 	private String wishAddress;
 	//경력
@@ -54,11 +60,11 @@ public class ApplicantResume {
 	private int salary;
 	
 	//학력 - ENUM
-	private String education; //1(고졸),2(전문대졸),3(대졸),4(석사),5(박사)
+	private Education education; //1(고졸),2(전문대졸),3(대졸),4(석사),5(박사)
 	
 	@ManyToOne
 	@JoinColumn(name = "userId")
-	@JsonIgnoreProperties({"username","password","createDate","updateDate"})
+	@JsonIgnoreProperties({"id","username","password","createDate","updateDate"})
 	private User user;
 	
 	@Transient

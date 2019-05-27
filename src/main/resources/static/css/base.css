@@ -1,0 +1,23 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: 0;
+}
+ body{
+	background : linear-gradient( to top , #1976D2, white 55% );
+	text-align:center;
+}
+.on1{
+    position: absolute;
+    right: 8%;
+    top:50%;
+}
+.on{
+    
+    margin-left: 1px;
+    position: fixed;
+    height: 10px;
+}
+a{
+    text-decoration: none;
+}

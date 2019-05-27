@@ -16,7 +16,7 @@ import com.cos.IotProjectGit.repository.UserRepository;
 public class UserCustomService implements UserDetailsService{
 	
 	@Autowired
-	private UserRepository applicantRepository;
+	private UserRepository userRepository;
 	
 //	public Applicant create(Applicant applicant) {
 //		return applicantRepository.save(applicant);
@@ -27,7 +27,7 @@ public class UserCustomService implements UserDetailsService{
 //	}
 //	
 	public Optional<User> findById(int num){
-		return applicantRepository.findById(num);
+		return userRepository.findById(num);
 	}
 //	
 //	public int delete(int num) {
@@ -41,19 +41,19 @@ public class UserCustomService implements UserDetailsService{
 //		}
 //	}
 //	
-	public Optional<User> applicantDetail(int num) {
-		return applicantRepository.findById(num);
+	public Optional<User> userDetail(int num) {
+		return userRepository.findById(num);
 	}
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
-		User applicant = applicantRepository.findByUsername(username);
+		User user = userRepository.findByUsername(username);
 		
 		UserCustomerDetail userDetails = null;
-		if(applicant != null) {
+		if(user != null) {
 			userDetails = new UserCustomerDetail();
-			userDetails.setApplicant(applicant);
+			userDetails.setUser(user);
 		}else {
 			throw new UsernameNotFoundException("유저를 찾을 수 없습니다. "+username);
 		}
