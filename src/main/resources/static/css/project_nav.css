@@ -1,18 +1,25 @@
 nav{
     height: 150px;
     position: relative;
+    background-color: rgb(112, 148, 228);
 }
 
 .my_nav{
-    
+    background-color: rgb(51, 103, 214);
     width: 100%;
     position: fixed;
     height: 100px;
     display: grid;
-    grid-template-columns: auto auto auto auto auto;
+    grid-template-columns: 2fr 4fr 2fr;
     padding: 10px;
     z-index: 1;
     
+}
+.nav-a{
+	color: white;
+}
+.logo{
+  padding: 25px;
 }
 .search_all{
     display: grid;
@@ -29,52 +36,60 @@ nav{
     padding-bottom: 0px;
 }
 span{
-    color: #1976D2 !important;
+    color: red;
 }
 .active{
-    color: #1976D2 !important;
+    color: red;
 }
 user agent stylesheet
 input{
-	color:white;
+  color:white;
 }
-
-.select-wrapper > ul > li{
-	color: white;
+input[type=button]{
+    height: 100%;
 }
-
 .dropdown-content{
-	color:white;
+  color:white;
 }
+#nav-mobile{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 25px;
+  
+}
+#nav-mobile >li{
+  list-style: none;
+}
+
 
 .small_menubtn{
-	display:none;
+  display:none;
 }
 .small_menu{
-	left:0px;
-	top:100px;
-	text-align:center;
-	position:absolute;
-	background-color: rgb(95, 168, 241) !important;
-	z-index : 1;
-	height: 0px;
-	width:100%;
-	transition: transform .4s;
+  left:0px;
+  top:100px;
+  text-align:center;
+  position:absolute;
+  background-color: rgb(95, 168, 241) !important;
+  z-index : 1;
+  height: 0px;
+  width:100%;
+  transition: transform .4s;
 }
 .small_menu a{
-  	
+    
 }
 .small_menu div:hover{
-	border: 1px solid white;
+  border: 1px solid white;
 }
 @media(max-width:900px){
-	.small_menubtn{
-		display: inline-block;
-	}	
-	.menu{
-		display:none;
-	}
-	.search_city{
-		display:none;
-	}
+  .small_menubtn{
+    display: inline-block;
+  }  
+  .menu{
+    display:none;
+  }
+  .search_city{
+    display:none;
+  }
 }

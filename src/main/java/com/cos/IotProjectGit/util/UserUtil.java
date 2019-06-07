@@ -6,4 +6,5 @@ public class UserUtil {
 		return "D://programfile//IotprojectGit//src//main//resources//static//image//";
 	}
 
+
 }

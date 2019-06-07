@@ -33,7 +33,7 @@
     <nav class="nav blue darken-1">
         <a href="/"><div>로고</div></a>
     </nav>    
-    <form action="/applicant/create" name="form" id="form" method="POST" onsubmit="return join()">
+    <form action="/user/create" name="form" id="form" method="POST" onsubmit="return join()">
         <div class="container">        
         <div>
                 <div class="row">
@@ -51,7 +51,7 @@
                     
                 </div>
 
-				<div class="row">                   
+            <div class="row">                   
                     <div class="input-field col s6" style="">
                         <input id="pw1" type="password" class="pw1" name="password" />
                         <label for="userPassword">패스워드</label>
@@ -100,7 +100,10 @@
                         <input name="gender" type="radio" />
                         <span>남자</span>
                     </label>
-                </p>                                                
+                </p>  
+                <input type="text" name="role" value="applicant" style="visibility: hidden" readonly/> 
+                <textarea name="" id="" cols="30" rows="10"></textarea>
+                                                                
             </div>                           
         </div>       
          <input type="submit" value="회원가입" class="btn waves-effect waves-light blue" /> 
@@ -117,22 +120,20 @@
     </footer>
     <!--------------------------------------- footer  -------------------------------------->
 <script>
-	var check = 1;
+   var check = 1;
     function validateDuplicateID(){
-        var applicantId_element = $(".username");
-        var applicantId = applicantId_element.value;
-        
+        var username_element = document.querySelector(".username");
+        var username = username_element.value;
+        alert(username)
        
-        
-        
         $.ajax({
-            url:'/applicant/',
+            url:'/checkid/'+username,
             headers: { // Http header
                 "Content-Type": "application/json",                    
             },
             type: 'POST',
             data: JSON.stringify({
-                'applicantId': applicantId
+                'username': username
             }),
             success: function (obj) {
                 if(1 == obj){
@@ -140,27 +141,27 @@
                     check=0;                
                 }else{
                     alert("중복된 아이디가 있습니다.");
-                    applicantId.focus();
+                  
                 }
             },
-            error: function () {            	
+            error: function () {               
                 alert("error");
-                applicantId.focus();
+               
             }
         })        
     }
 
     function join(){
-    	 
+        
         if(check == 1){
-        	alert("아이디 중복체크를 해주세요");
+           alert("아이디 중복체크를 해주세요");
             return false;
         }
         var pw1 = document.querySelector(".pw1");
-		var pw2 = document.querySelector(".pw2");
-		alert(pw1);
-		alert(pw1.value);
-		alert(pw2.value);
+      var pw2 = document.querySelector(".pw2");
+      alert(pw1);
+      alert(pw1.value);
+      alert(pw2.value);
 
         if(pw1.value === pw2.value){
             return true;

@@ -6,6 +6,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -22,6 +23,8 @@ import com.cos.IotProjectGit.model.ApplicantResume;
 import com.cos.IotProjectGit.model.User;
 import com.cos.IotProjectGit.model.code.Education;
 import com.cos.IotProjectGit.repository.ApplicantResumeRepository;
+import com.cos.IotProjectGit.repository.JobRepository;
+import com.cos.IotProjectGit.repository.UserRepository;
 import com.cos.IotProjectGit.service.ResumeService;
 import com.cos.IotProjectGit.service.UserCustomerDetail;
 import com.cos.IotProjectGit.util.UserUtil;
@@ -33,17 +36,42 @@ public class ResumeController {
 	private ApplicantResumeRepository applicantResumeRepository;
 	
 	@Autowired
+	private UserRepository userRepository;
+	
+	@Autowired
+	private JobRepository jobRepository;
+	
+	@Autowired
 	private ResumeService applicantResumeService;
 
 	@GetMapping("/resume")
-	public String resume() {
-		return "resume";
+	public String resume(@AuthenticationPrincipal UserCustomerDetail userDetail,Model model) {
+		Optional<User> userO= userRepository.findById(userDetail.getUser().getId());
+		User user= userO.get();
+		
+		
+		
+		model.addAttribute("user", user);
+		return "/user/resume";
 	}
+	
+	@GetMapping("/resume/company")
+	public String companyresume(@AuthenticationPrincipal UserCustomerDetail userDetail,Model model) {
+		Optional<User> userO= userRepository.findById(userDetail.getUser().getId());
+		User user= userO.get();
+		model.addAttribute("user", user);
+		return "/company/resume";
+	}
+	
+
+	
 	
 	@GetMapping("/resume/Detail")
 	public String resumeDetail() {
 		return "/resume/Detail";
 	}
+	
+
 	
 	@GetMapping("/app/resume/list")
 	public @ResponseBody List<ApplicantResume> testfindAll() {
@@ -59,18 +87,25 @@ public class ResumeController {
 	}
 
 	@PostMapping("/resume/create")
-	public @ResponseBody ApplicantResume resumeCreate(@AuthenticationPrincipal UserCustomerDetail userDetail,
+	public String resumeCreate(@AuthenticationPrincipal UserCustomerDetail userDetail,
 			@RequestParam("file") MultipartFile file, String title, Education education , String wishAddress, 
 			String job,String age, int salary, String experience,
 			@RequestParam("zip") MultipartFile zip
 			) throws IOException {
 		
-		Path filePath = Paths.get(UserUtil.getResouecePath() + file.getOriginalFilename());
+		UUID uuidfile = UUID.randomUUID();
+		String uuidFileName = uuidfile + "_" + file.getOriginalFilename();
+		System.out.println("uuidfile"+uuidfile);
+		UUID uuidZip = UUID.randomUUID();
+		String uuidZipName = uuidZip + "_" + zip.getOriginalFilename();
+		
+		Path filePath = Paths.get(UserUtil.getResouecePath() + uuidFileName);
+		System.out.println("filePath"+filePath);
 		
 		System.out.println(file.getBytes());
 		Files.write(filePath,file.getBytes());
 		
-		Path fileZip = Paths.get(UserUtil.getResouecePath()+zip.getOriginalFilename());
+		Path fileZip = Paths.get(UserUtil.getResouecePath()+uuidZipName);
 		Files.write(fileZip, zip.getBytes());
 		
 		User user = userDetail.getUser();
@@ -80,17 +115,20 @@ public class ResumeController {
 		ApplicantResume applicantresume = ApplicantResume.builder().title(title).
 				user(user).job(job).age(age).salary(salary).education(education).
 				experience(experience).wishAddress(wishAddress).
-				mimeType(file.getContentType()).fileName(file.getOriginalFilename()).filePath("/image/"+file.getOriginalFilename()).
-				zipmimeType(zip.getContentType()).zipfileName(zip.getOriginalFilename()).zipfilePath("/image"+zip.getOriginalFilename()).
+				mimeType(file.getContentType()).fileName(uuidFileName).filePath("http://192.168.0.9:7000/image/"+uuidFileName).
+				zipmimeType(zip.getContentType()).zipfileName(uuidZipName).zipfilePath("http://192.168.0.9:7000/image"+uuidZipName).
 				
 				build();
 		
 		applicantResumeRepository.save(applicantresume);
 		
-		return applicantresume; 
+		return "close"; 
 	}
 	
-	
+//	@GetMapping("/close")
+//	public String close() {
+//		return "close";
+//	}
 	@GetMapping("/resume/{id}")
 	public String detail(@PathVariable int id, Model model) {
 		Optional<ApplicantResume> resume = applicantResumeService.detail(id);

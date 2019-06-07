@@ -16,16 +16,16 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Job {
+public class Joborthogonal {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private String num;
 	
-	private String majorJob;
-	private String minorJob;
-
-	@CreationTimestamp
-	private LocalDate createDate;
-	@CreationTimestamp
-	private LocalDate updateDate;
+	private String jobOrthogonal;
+	
+	
+	private String bigOrthogonal;
+	private String smallOrthogonal;
+	
+	
 }

@@ -70,8 +70,6 @@ public class ApplicantResume {
 	@Transient
 	@Builder.Default private List<ApplicantHistory> applicantHistory = new ArrayList<>(); //콤마로 구분해서 집어 넣음.
 	
-	@Transient
-	@Builder.Default private List<Skill> skill = new ArrayList<>();
 	
 	@CreationTimestamp
 	private LocalDate createDate;

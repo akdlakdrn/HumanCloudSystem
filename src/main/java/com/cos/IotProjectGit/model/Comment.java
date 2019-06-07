@@ -24,8 +24,12 @@ public class Comment {
 	private String content;
 	
 	@ManyToOne
-	@JoinColumn(name="userId")
-	private User user;
+	@JoinColumn(name="fromUser")
+	private User fromUser;
+	
+	@ManyToOne
+	@JoinColumn(name="toUser")
+	private User toUser;
 	
 	@CreationTimestamp
 	private LocalDate createDate;

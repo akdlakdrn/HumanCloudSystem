@@ -22,7 +22,7 @@ main{
 }
 
 .slide_container{
-	margin-top : 30px;
+  margin-top : 30px;
     width: 100%;
     background-color: white;
     
@@ -54,7 +54,7 @@ main{
     border-radius: 10%;
 }
 .img_box:hover{
-	border : 1px solid rgb(95, 168, 241) !important;
+  border : 1px solid rgb(95, 168, 241) !important;
 }
 
 .img{
@@ -102,15 +102,15 @@ main{
 
 .my1{
     display: grid;
-    grid-template-columns: 2fr 5fr;
+    grid-template-columns: 5fr 2fr;
     grid-gap:10px;
     background-color: white;
-    height: 200px;
+    height: 100px;
     
 }
 .my2{
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: auto;
     grid-column-gap:7px;
     background-color: white;      
     margin-top: 20px;
@@ -121,27 +121,54 @@ main{
     border: 1px solid rgb(95, 168, 241) !important;
 }
 .resume{
-	overflow-y:scroll;
-	height : 200px;
+  overflow-y:scroll;
+  height : 200px;
 }
 .information{
-	overflow-y:scroll;
-	height : 200px;
+  text-align : left;
+  overflow-y:scroll;
+  height : 200px;
+}
+.information div{
+	margin-left: 10px;
+}
+.resumelist{
+  position: relative;
+}
+.resumelist_btn {
+ 
+}
+.myresumelist{
+
+  height : 0px;
+  width: 200px;
+  text-align:left;  
+  transition: all .7s;
+  position: absolute;
+  background-color: white;  
+  overflow: hidden;
+  border-bottom: 1px solid rgb(112, 148, 228);
+  border-left:   1px solid rgb(112, 148, 228);
+  border-right:  1px solid rgb(112, 148, 228);
+  overflow-y : scroll;
+}
+.myresumelist  div{
+  	
 }
 
 
 @media(max-width:900px){
-	.container_b{
+  .container_b{
     display: inline-block;
     width: 100%;
-	}
-	.my1{
-		grid-template-columns: auto;
-	}
-	.my_face{
-		display:none;
-	}
-	.my_name{
-		width:100%;
-	
+  }
+  .my1{
+    grid-template-columns: auto;
+  }
+  .my_face{
+    display:none;
+  }
+  .my_name{
+    width:100%;
+  
 }

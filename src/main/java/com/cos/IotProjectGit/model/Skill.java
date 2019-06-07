@@ -29,7 +29,7 @@ public class Skill {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	private String role; //Admin, User, Company
+	private String role; //Admin, Applicant, Company
 	
 	@ManyToOne
 	@JoinColumn(name="userId")
